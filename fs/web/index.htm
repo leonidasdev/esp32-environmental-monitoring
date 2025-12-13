@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta lang="es" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+        <title>Configuración SPV</title>
+        <link rel="stylesheet" href="styles.css" />
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <div class="mainDiv">
+            <div hidden id="imageDiv">
+                <svg id="okImage" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2Zm3.22 6.97-4.47 4.47-1.97-1.97a.75.75 0 0 0-1.06 1.06l2.5 2.5a.75.75 0 0 0 1.06 0l5-5a.75.75 0 1 0-1.06-1.06Z" fill="#50c878"/>
+                </svg>
+                <p>Se ha actualizado la configuración</p>
+            </div>
+            <div hidden id="formDiv">
+                <h1>Configuración SPV</h1>
+                <p>SBC25M02</p>
+                <hr />
+                <form action="/change_config" method="post" enctype="text/plain" class="mainForm">
+                    <fieldset id="mainFieldset">
+                        <legend>Configuración general</legend>
+                        <label for="meshKeyInput">Clave de mesh</label>
+                        <br>
+                        <input name="meshKey" id="meshKeyInput" type="text" required />
+
+                        <label for="nodeNameInput">Nombre del nodo</label>
+                        <input name="nodeName" type="text" id="nodeNameInput"/>
+
+                        <br>
+
+                        <label for="nodeTypeInput">Tipo de dispositivo</label>
+                        <div class="selectDiv">
+                            <input type="radio" id="nodeTypeNode" name="nodeType" value="node" style="width: auto;" onclick="onNodeTypeChange()" checked>
+                            <label for="nodeTypeNode">Nodo</label>
+                            <br>
+
+                            <input type="radio" id="nodeTypeGateway" name="nodeType" value="gateway" style="width: auto;" onclick="onNodeTypeChange()">
+                            <label for="nodeTypeGateway">Gateway</label>
+                            <br>
+                        </div>
+                    </fieldset>
+
+
+                    <fieldset id="gatewayFieldset">
+                        <legend>Configuración de gateway</legend>
+                        <label for="ssidInput">SSID Wi-Fi</label>
+                        <br>
+                        <input name="wifiSsid" type="text" id="ssidInput" />
+
+                        <label for="passwordInput">Contraseña Wi-Fi</label>
+                        <br>
+                        <input name="wifiPassword" type="password" id="passwordInput" minlength="8" />
+
+                        <label for="mqttKeyInput">Clave de Thingsboard</label>
+                        <br>
+                        <input name="mqttKey" type="text" id="passwordInput" />
+                    </fieldset>
+
+                    <input type="submit" value="Confirmar" class="button" id="submitButton">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

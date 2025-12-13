@@ -1,0 +1,141 @@
+html {
+	height: calc(100% - 100px);
+}
+
+body {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 25px;
+	background-color: beige;
+	font-family: sans-serif;
+}
+
+.mainDiv {
+	min-width: 100px;
+	max-width: 600px;
+	width: 600px;
+
+	margin: auto;
+	padding: 20px;
+
+	border: black 2px solid;
+	background-color: white;
+	border-radius: 12px;
+	box-shadow: 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+h1 {
+	text-align: center;
+	font-weight: bolder;
+	margin-bottom: 0px;
+}
+
+p {
+	text-align: center;
+	font-weight: bold;
+	font-size: 18px;
+	margin-top: 6px;
+}
+
+hr {
+	margin: 12px 6px;
+}
+
+.mainForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+fieldset {
+	all: inherit;
+	min-width: 100px;
+	max-width: 500px;
+	width: 80%;
+	margin: 12px 6px;
+	padding: 12px 24px;
+	padding-top: 32px;
+	border:solid gray 1px;
+	border-radius: 12px;
+}
+
+#gatewayFieldset, #nodeFieldset {
+	display: flex;
+}
+
+legend {
+	font-weight: bold;
+	font-size: 20px;
+	width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+label {
+	font-size: large;
+	margin-bottom: 12px;
+}
+
+input, select {
+	width: 200px;
+	margin-bottom: 18px;
+	border-radius: 3px;
+	border: solid 1px;
+}
+
+input:disabled, select:disabled {
+	background-color: gray;
+}
+
+.selectDiv {
+	display: block;
+}
+
+select {
+	width: 175px !important;
+}
+
+.iconButton {
+	width: 30px;
+	height: 25px;
+	border: 0px;
+	background-color: transparent;
+	text-align: center;
+
+	font-size: large;
+}
+
+.iconButton:hover {
+
+	background-color:gainsboro;
+	border-radius: 10px;
+}
+
+.button {
+	width: 120px;
+	padding: 6px 18px;
+
+	font-size: 14px;
+	background-color: rgb(80, 200, 120);
+	border: rgb(40, 100, 60) solid 3px;
+	border-radius: 6px;
+}
+
+.button:disabled {
+	background-color: rgb(40, 100, 60);
+}
+
+.button:hover:enabled {
+	background-color: rgb(60, 150, 90);
+}
+
+svg {
+	min-width: 100px;
+	max-width: 100%;
+	width: 500px;
+
+	filter: drop-shadow(3px 3px rgba(0, 0, 0, 0.25));
+}

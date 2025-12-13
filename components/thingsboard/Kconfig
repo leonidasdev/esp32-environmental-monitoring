@@ -1,0 +1,9 @@
+menu "Thingsboard"
+
+	config THINGSBOARD_BROKER_HOSTNAME_DEFAULT
+		string "Default Thingsboard API server"
+		default "demo.thingsboard.io"
+		help
+			Default domain name to use by default.
+
+endmenu

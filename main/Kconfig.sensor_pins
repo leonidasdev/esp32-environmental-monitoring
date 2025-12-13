@@ -1,0 +1,352 @@
+
+# ============================== #
+#      WARNING. DO NOT EDIT      #
+#								 #
+#  Automatically generated file  #
+# See gen_kconfig_sensor_pins.py #
+#								 #
+# ============================== #
+
+
+
+choice SPV_SENSOR_MICROPHONE_CS_IO
+	prompt "Microphone Chip Select"
+	default SPV_SENSOR_MICROPHONE_CS_IO_13
+	help
+		Pin to use as the Pmod MIC3 microphone's chip select.
+
+	config SPV_SENSOR_MICROPHONE_CS_IO_4
+		bool "GPIO 4 / RTC 10"
+
+	config SPV_SENSOR_MICROPHONE_CS_IO_13
+		bool "GPIO 13 / RTC 14"
+
+	config SPV_SENSOR_MICROPHONE_CS_IO_14
+		bool "GPIO 14 / RTC 16"
+
+	config SPV_SENSOR_MICROPHONE_CS_IO_25
+		bool "GPIO 25 / RTC 6"
+
+	config SPV_SENSOR_MICROPHONE_CS_IO_26
+		bool "GPIO 26 / RTC 7"
+
+	config SPV_SENSOR_MICROPHONE_CS_IO_27
+		bool "GPIO 27 / RTC 17"
+
+	config SPV_SENSOR_MICROPHONE_CS_IO_32
+		bool "GPIO 32 / RTC 9"
+
+	config SPV_SENSOR_MICROPHONE_CS_IO_33
+		bool "GPIO 33 / RTC 8"
+
+endchoice
+
+
+config SPV_SENSOR_MICROPHONE_CS_GPIO
+	int
+	default 4 if SPV_SENSOR_MICROPHONE_CS_IO_4
+	default 13 if SPV_SENSOR_MICROPHONE_CS_IO_13
+	default 14 if SPV_SENSOR_MICROPHONE_CS_IO_14
+	default 25 if SPV_SENSOR_MICROPHONE_CS_IO_25
+	default 26 if SPV_SENSOR_MICROPHONE_CS_IO_26
+	default 27 if SPV_SENSOR_MICROPHONE_CS_IO_27
+	default 32 if SPV_SENSOR_MICROPHONE_CS_IO_32
+	default 33 if SPV_SENSOR_MICROPHONE_CS_IO_33
+
+
+config SPV_SENSOR_MICROPHONE_CS_RTC
+	int
+	default 10 if SPV_SENSOR_MICROPHONE_CS_IO_4
+	default 14 if SPV_SENSOR_MICROPHONE_CS_IO_13
+	default 16 if SPV_SENSOR_MICROPHONE_CS_IO_14
+	default 6 if SPV_SENSOR_MICROPHONE_CS_IO_25
+	default 7 if SPV_SENSOR_MICROPHONE_CS_IO_26
+	default 17 if SPV_SENSOR_MICROPHONE_CS_IO_27
+	default 9 if SPV_SENSOR_MICROPHONE_CS_IO_32
+	default 8 if SPV_SENSOR_MICROPHONE_CS_IO_33
+
+
+choice SPV_SENSOR_LUMINOSITY_CS_IO
+	prompt "Luminosity sensor Chip Select"
+	default SPV_SENSOR_LUMINOSITY_CS_IO_14
+	help
+		Pin to use as the Pmod ALS luminosity sensor's chip select.
+
+	config SPV_SENSOR_LUMINOSITY_CS_IO_4
+		bool "GPIO 4 / RTC 10"
+
+	config SPV_SENSOR_LUMINOSITY_CS_IO_13
+		bool "GPIO 13 / RTC 14"
+
+	config SPV_SENSOR_LUMINOSITY_CS_IO_14
+		bool "GPIO 14 / RTC 16"
+
+	config SPV_SENSOR_LUMINOSITY_CS_IO_25
+		bool "GPIO 25 / RTC 6"
+
+	config SPV_SENSOR_LUMINOSITY_CS_IO_26
+		bool "GPIO 26 / RTC 7"
+
+	config SPV_SENSOR_LUMINOSITY_CS_IO_27
+		bool "GPIO 27 / RTC 17"
+
+	config SPV_SENSOR_LUMINOSITY_CS_IO_32
+		bool "GPIO 32 / RTC 9"
+
+	config SPV_SENSOR_LUMINOSITY_CS_IO_33
+		bool "GPIO 33 / RTC 8"
+
+endchoice
+
+
+config SPV_SENSOR_LUMINOSITY_CS_GPIO
+	int
+	default 4 if SPV_SENSOR_LUMINOSITY_CS_IO_4
+	default 13 if SPV_SENSOR_LUMINOSITY_CS_IO_13
+	default 14 if SPV_SENSOR_LUMINOSITY_CS_IO_14
+	default 25 if SPV_SENSOR_LUMINOSITY_CS_IO_25
+	default 26 if SPV_SENSOR_LUMINOSITY_CS_IO_26
+	default 27 if SPV_SENSOR_LUMINOSITY_CS_IO_27
+	default 32 if SPV_SENSOR_LUMINOSITY_CS_IO_32
+	default 33 if SPV_SENSOR_LUMINOSITY_CS_IO_33
+
+
+config SPV_SENSOR_LUMINOSITY_CS_RTC
+	int
+	default 10 if SPV_SENSOR_LUMINOSITY_CS_IO_4
+	default 14 if SPV_SENSOR_LUMINOSITY_CS_IO_13
+	default 16 if SPV_SENSOR_LUMINOSITY_CS_IO_14
+	default 6 if SPV_SENSOR_LUMINOSITY_CS_IO_25
+	default 7 if SPV_SENSOR_LUMINOSITY_CS_IO_26
+	default 17 if SPV_SENSOR_LUMINOSITY_CS_IO_27
+	default 9 if SPV_SENSOR_LUMINOSITY_CS_IO_32
+	default 8 if SPV_SENSOR_LUMINOSITY_CS_IO_33
+
+
+choice SPV_SENSOR_SPI_SCK_IO
+	prompt "SPI SCK pin"
+	default SPV_SENSOR_SPI_SCK_IO_25
+	help
+		Pin to use as SCK.
+
+	config SPV_SENSOR_SPI_SCK_IO_4
+		bool "GPIO 4 / RTC 10"
+
+	config SPV_SENSOR_SPI_SCK_IO_13
+		bool "GPIO 13 / RTC 14"
+
+	config SPV_SENSOR_SPI_SCK_IO_14
+		bool "GPIO 14 / RTC 16"
+
+	config SPV_SENSOR_SPI_SCK_IO_25
+		bool "GPIO 25 / RTC 6"
+
+	config SPV_SENSOR_SPI_SCK_IO_26
+		bool "GPIO 26 / RTC 7"
+
+	config SPV_SENSOR_SPI_SCK_IO_27
+		bool "GPIO 27 / RTC 17"
+
+	config SPV_SENSOR_SPI_SCK_IO_32
+		bool "GPIO 32 / RTC 9"
+
+	config SPV_SENSOR_SPI_SCK_IO_33
+		bool "GPIO 33 / RTC 8"
+
+endchoice
+
+
+config SPV_SENSOR_SPI_SCK_GPIO
+	int
+	default 4 if SPV_SENSOR_SPI_SCK_IO_4
+	default 13 if SPV_SENSOR_SPI_SCK_IO_13
+	default 14 if SPV_SENSOR_SPI_SCK_IO_14
+	default 25 if SPV_SENSOR_SPI_SCK_IO_25
+	default 26 if SPV_SENSOR_SPI_SCK_IO_26
+	default 27 if SPV_SENSOR_SPI_SCK_IO_27
+	default 32 if SPV_SENSOR_SPI_SCK_IO_32
+	default 33 if SPV_SENSOR_SPI_SCK_IO_33
+
+
+config SPV_SENSOR_SPI_SCK_RTC
+	int
+	default 10 if SPV_SENSOR_SPI_SCK_IO_4
+	default 14 if SPV_SENSOR_SPI_SCK_IO_13
+	default 16 if SPV_SENSOR_SPI_SCK_IO_14
+	default 6 if SPV_SENSOR_SPI_SCK_IO_25
+	default 7 if SPV_SENSOR_SPI_SCK_IO_26
+	default 17 if SPV_SENSOR_SPI_SCK_IO_27
+	default 9 if SPV_SENSOR_SPI_SCK_IO_32
+	default 8 if SPV_SENSOR_SPI_SCK_IO_33
+
+
+choice SPV_SENSOR_SPI_MISO_IO
+	prompt "SPI MISO pin"
+	default SPV_SENSOR_SPI_MISO_IO_26
+	help
+		Pin to use as MISO.
+
+	config SPV_SENSOR_SPI_MISO_IO_4
+		bool "GPIO 4 / RTC 10"
+
+	config SPV_SENSOR_SPI_MISO_IO_13
+		bool "GPIO 13 / RTC 14"
+
+	config SPV_SENSOR_SPI_MISO_IO_14
+		bool "GPIO 14 / RTC 16"
+
+	config SPV_SENSOR_SPI_MISO_IO_25
+		bool "GPIO 25 / RTC 6"
+
+	config SPV_SENSOR_SPI_MISO_IO_26
+		bool "GPIO 26 / RTC 7"
+
+	config SPV_SENSOR_SPI_MISO_IO_27
+		bool "GPIO 27 / RTC 17"
+
+	config SPV_SENSOR_SPI_MISO_IO_32
+		bool "GPIO 32 / RTC 9"
+
+	config SPV_SENSOR_SPI_MISO_IO_33
+		bool "GPIO 33 / RTC 8"
+
+endchoice
+
+
+config SPV_SENSOR_SPI_MISO_GPIO
+	int
+	default 4 if SPV_SENSOR_SPI_MISO_IO_4
+	default 13 if SPV_SENSOR_SPI_MISO_IO_13
+	default 14 if SPV_SENSOR_SPI_MISO_IO_14
+	default 25 if SPV_SENSOR_SPI_MISO_IO_25
+	default 26 if SPV_SENSOR_SPI_MISO_IO_26
+	default 27 if SPV_SENSOR_SPI_MISO_IO_27
+	default 32 if SPV_SENSOR_SPI_MISO_IO_32
+	default 33 if SPV_SENSOR_SPI_MISO_IO_33
+
+
+config SPV_SENSOR_SPI_MISO_RTC
+	int
+	default 10 if SPV_SENSOR_SPI_MISO_IO_4
+	default 14 if SPV_SENSOR_SPI_MISO_IO_13
+	default 16 if SPV_SENSOR_SPI_MISO_IO_14
+	default 6 if SPV_SENSOR_SPI_MISO_IO_25
+	default 7 if SPV_SENSOR_SPI_MISO_IO_26
+	default 17 if SPV_SENSOR_SPI_MISO_IO_27
+	default 9 if SPV_SENSOR_SPI_MISO_IO_32
+	default 8 if SPV_SENSOR_SPI_MISO_IO_33
+
+
+choice SPV_SENSOR_I2C_SDA_IO
+	prompt "I²C SDA pin"
+	default SPV_SENSOR_I2C_SDA_IO_33
+	help
+		Pin to use as SDA.
+
+	config SPV_SENSOR_I2C_SDA_IO_4
+		bool "GPIO 4 / RTC 10"
+
+	config SPV_SENSOR_I2C_SDA_IO_13
+		bool "GPIO 13 / RTC 14"
+
+	config SPV_SENSOR_I2C_SDA_IO_14
+		bool "GPIO 14 / RTC 16"
+
+	config SPV_SENSOR_I2C_SDA_IO_25
+		bool "GPIO 25 / RTC 6"
+
+	config SPV_SENSOR_I2C_SDA_IO_26
+		bool "GPIO 26 / RTC 7"
+
+	config SPV_SENSOR_I2C_SDA_IO_27
+		bool "GPIO 27 / RTC 17"
+
+	config SPV_SENSOR_I2C_SDA_IO_32
+		bool "GPIO 32 / RTC 9"
+
+	config SPV_SENSOR_I2C_SDA_IO_33
+		bool "GPIO 33 / RTC 8"
+
+endchoice
+
+
+config SPV_SENSOR_I2C_SDA_GPIO
+	int
+	default 4 if SPV_SENSOR_I2C_SDA_IO_4
+	default 13 if SPV_SENSOR_I2C_SDA_IO_13
+	default 14 if SPV_SENSOR_I2C_SDA_IO_14
+	default 25 if SPV_SENSOR_I2C_SDA_IO_25
+	default 26 if SPV_SENSOR_I2C_SDA_IO_26
+	default 27 if SPV_SENSOR_I2C_SDA_IO_27
+	default 32 if SPV_SENSOR_I2C_SDA_IO_32
+	default 33 if SPV_SENSOR_I2C_SDA_IO_33
+
+
+config SPV_SENSOR_I2C_SDA_RTC
+	int
+	default 10 if SPV_SENSOR_I2C_SDA_IO_4
+	default 14 if SPV_SENSOR_I2C_SDA_IO_13
+	default 16 if SPV_SENSOR_I2C_SDA_IO_14
+	default 6 if SPV_SENSOR_I2C_SDA_IO_25
+	default 7 if SPV_SENSOR_I2C_SDA_IO_26
+	default 17 if SPV_SENSOR_I2C_SDA_IO_27
+	default 9 if SPV_SENSOR_I2C_SDA_IO_32
+	default 8 if SPV_SENSOR_I2C_SDA_IO_33
+
+
+choice SPV_SENSOR_I2C_SCL_IO
+	prompt "I²C SCL pin"
+	default SPV_SENSOR_I2C_SCL_IO_32
+	help
+		Pin to use as SCL.
+
+	config SPV_SENSOR_I2C_SCL_IO_4
+		bool "GPIO 4 / RTC 10"
+
+	config SPV_SENSOR_I2C_SCL_IO_13
+		bool "GPIO 13 / RTC 14"
+
+	config SPV_SENSOR_I2C_SCL_IO_14
+		bool "GPIO 14 / RTC 16"
+
+	config SPV_SENSOR_I2C_SCL_IO_25
+		bool "GPIO 25 / RTC 6"
+
+	config SPV_SENSOR_I2C_SCL_IO_26
+		bool "GPIO 26 / RTC 7"
+
+	config SPV_SENSOR_I2C_SCL_IO_27
+		bool "GPIO 27 / RTC 17"
+
+	config SPV_SENSOR_I2C_SCL_IO_32
+		bool "GPIO 32 / RTC 9"
+
+	config SPV_SENSOR_I2C_SCL_IO_33
+		bool "GPIO 33 / RTC 8"
+
+endchoice
+
+
+config SPV_SENSOR_I2C_SCL_GPIO
+	int
+	default 4 if SPV_SENSOR_I2C_SCL_IO_4
+	default 13 if SPV_SENSOR_I2C_SCL_IO_13
+	default 14 if SPV_SENSOR_I2C_SCL_IO_14
+	default 25 if SPV_SENSOR_I2C_SCL_IO_25
+	default 26 if SPV_SENSOR_I2C_SCL_IO_26
+	default 27 if SPV_SENSOR_I2C_SCL_IO_27
+	default 32 if SPV_SENSOR_I2C_SCL_IO_32
+	default 33 if SPV_SENSOR_I2C_SCL_IO_33
+
+
+config SPV_SENSOR_I2C_SCL_RTC
+	int
+	default 10 if SPV_SENSOR_I2C_SCL_IO_4
+	default 14 if SPV_SENSOR_I2C_SCL_IO_13
+	default 16 if SPV_SENSOR_I2C_SCL_IO_14
+	default 6 if SPV_SENSOR_I2C_SCL_IO_25
+	default 7 if SPV_SENSOR_I2C_SCL_IO_26
+	default 17 if SPV_SENSOR_I2C_SCL_IO_27
+	default 9 if SPV_SENSOR_I2C_SCL_IO_32
+	default 8 if SPV_SENSOR_I2C_SCL_IO_33
+

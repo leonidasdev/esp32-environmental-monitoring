@@ -1,0 +1,17 @@
+[project]
+name = "spv-scripts"
+version = "0.1.0"
+requires-python = ">= 3.13"
+
+authors = [
+	{name = "Andrei Daniel Cazacu", email = "andreidaniel.cazacu@alumnos.upm.es"},
+	{name = "Gabriel Gutiérrez Fuentes", email = "gabriel.gutierrez@alumnos.upm.es"},
+	{name = "Leonardo Chen Jin"},
+	{name = "Santiago Marian Molina"}
+]
+
+dependencies = []
+
+
+[project.scripts]
+gen_kconfig_sensor_pins = "gen_kconfig_sensor_pins"

@@ -1,0 +1,24 @@
+dependencies:
+  idf:
+    source:
+      type: idf
+    version: 5.5.1
+  thingsboard:
+    dependencies: []
+    source:
+      path: C:\Users\user2\Downloads\proyecto3\components\thingsboard
+      type: local
+    version: 0.1.0
+  wmesh:
+    dependencies: []
+    source:
+      path: C:\Users\user2\Downloads\proyecto3\components\wmesh
+      type: local
+    version: 0.1.0
+direct_dependencies:
+- idf
+- thingsboard
+- wmesh
+manifest_hash: fe2c6bc3864c197e5f4f45b8df9ab5a0d372f155f1961fcaf832911bc49c4bfd
+target: esp32
+version: 2.0.0

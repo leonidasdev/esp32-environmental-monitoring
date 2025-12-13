@@ -1,0 +1,8 @@
+dependencies:
+  idf: ">5.0.0"
+
+  thingsboard:
+    path: "../components/thingsboard"
+
+  wmesh:
+    path: "../components/wmesh"

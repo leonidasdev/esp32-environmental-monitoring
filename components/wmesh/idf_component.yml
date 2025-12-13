@@ -1,0 +1,20 @@
+version: "0.1.0"
+description: "Wireless Mesh over ESP-NOW"
+
+maintainers:
+  - "Andrei Daniel Cazacu"
+  - "Gabriel Gutiérrez Fuentes"
+  - "Leonardo Chen Jin"
+  - "Santiago Marian Molina"
+
+tags:
+  - api
+  - esp_now
+  - wifi
+  - wireless
+
+files:
+  use_gitignore: true
+
+dependencies:
+  idf: ">5.5.0"

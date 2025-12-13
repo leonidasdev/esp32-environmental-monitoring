@@ -1,0 +1,17 @@
+# ESP-IDF Partition Table
+
+# Code partitions (Factory and OTA) must be aligned to 64kiB
+# Flash size is 4MiB (64 sectors of 64kiB)
+# First sector is reserved for the bootloader and internal data.
+# Last three sectors are occupied by the FAT32 partition.
+#
+# Remaining 60 sectors are used for OTA.
+# Each OTA is 1.966.080B (30 sectors of 64kiB)
+
+# Name      Type    SubType Offset      Size    Flags
+nvs,        data,   nvs,    0x9000,     0x4000,
+otadata,	data,	ota,	0xd000,		0x2000,
+phy_init,	data,	phy,	0xf000,		0x1000,
+ota_0,		app,	ota_0,	,			0x1C0000,
+ota_1,		app,	ota_1,	,			0x1C0000,
+storage,    data,   fat,    ,           192k,

@@ -1,0 +1,152 @@
+menu "SPV"
+
+config SPV_WAKE_INTERVAL_MINUTES
+	int "Wake interval (minutes)"
+	default 1
+	help
+		Defines how much time nodes will spend in deep sleep between uploads
+
+
+choice SPV_TIMESTAMP_BITS
+	prompt "Timestamp size"
+	default SPV_TIMESTAMP_BITS_64
+	help
+		Size of network timestamps
+
+	config SPV_TIMESTAMP_BITS_64
+		bool "64 bits"
+
+	config SPV_TIMESTAMP_BITS_32
+		bool "32 bits"
+
+endchoice
+
+
+config SPV_TIMESTAMP_SIZE
+	int
+	default 8 if SPV_TIMESTAMP_BITS_64
+	default 4 if SPV_TIMESTAMP_BITS_32
+
+menu "Provisioning"
+
+	config SPV_PROVISIONING_WIFI_SSID
+		string "Wi-Fi SSID"
+		default "SPV"
+		help
+			Wi-Fi SSID to use when provisioning.
+
+	config SPV_PROVISIONING_USE_PASSWORD
+		bool "Use Wi-Fi password"
+		default y
+		help
+			Set to true to protect the provisioning Wi-Fi network with a
+			password.
+
+	config SPV_PROVISIONING_PASSWORD
+		string "Wi-Fi password"
+		default "SBC25M02"
+		depends on SPV_PROVISIONING_USE_PASSWORD
+		help
+			Wi-Fi password for the provisioning network.
+
+endmenu
+
+
+menu "Sensors"
+
+	config SPV_SENSOR_READ_FREQUENCY_SECONDS
+		int "Sensor update frequency (seconds)"
+		default 10
+		help
+			How often readings should be taken
+
+	config SPV_SENSOR_READ_BUFFER_COUNT
+		int "Reading buffer size"
+		default 350
+		help
+			How much space to allocate in ULP memory for sensor readings.
+			Measured in number of readings.
+
+			Should be, at least: Wake_interval * 60 / Read_frequency
+
+	config SPV_SENSOR_GAS_I2C_ADDRESS
+		hex "Gas sensor I²C address"
+		default 0x5B
+		help
+			I²C slave address of the Pmod AQS sensor.
+
+	config SPV_SENSOR_ENV_I2C_ADDRESS
+		hex "Environment sensor I²C address"
+		default 0x40
+		help
+			I²C slave address of the HDC1080 sensor.
+
+	rsource "Kconfig.sensor_pins"
+
+
+	menu "ULP"
+
+		config SPV_ULP_I2C_WAIT
+			int "I²C base period"
+			default 20
+
+		config SPV_ULP_SPI_WAIT
+			int "SPI base period"
+			default 8
+
+	endmenu
+
+
+endmenu
+
+menu "Services"
+	menu "Gateway service"
+		config SPV_GATEWAY_SERVICE_ID
+			int "Gateway service ID"
+			default 1
+
+
+		config SPV_GATEWAY_SERVICE_WIFI_RETRIES
+			int "Number of Wi-Fi connection retries"
+			default 5
+
+
+		config SPV_GATEWAY_SERVICE_THINGSBOARD_ENDPOINT
+			string "Thingsboard endpoint"
+			default "demo.thingsboard.io"
+
+	endmenu
+
+	menu "OTA service"
+		config SPV_OTA_SERVICE_ID
+			int "OTA service ID"
+			default 2
+
+
+		config SPV_OTA_SERVICE_CHUNK_SIZE
+			int "OTA packet size"
+			default 128
+
+	endmenu
+
+	menu "Telemetry service"
+		config SPV_TELEMETRY_SERVICE_ID
+			int "Telemetry service ID"
+			default 3
+
+		config SPV_TELEMETRY_CHUNK_SIZE
+			int "Telemetry readings per message"
+			default 10
+			help
+				How many readings should be sent to the gateway per telemetry packet.
+
+		config SPV_TELEMETRY_NODE_NAME_LENGTH
+			int "Maximum node name length"
+			default 32
+			help
+				Maximum number of characters a node name may have.
+	endmenu
+endmenu
+
+
+endmenu

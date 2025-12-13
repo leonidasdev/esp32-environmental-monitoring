@@ -1,0 +1,202 @@
+menu "Mesh network"
+
+
+#config WMESH_RECEIVE_BUFFER_SIZE
+#	int "Receive buffer size"
+#	default 16384
+#	help
+#		Size in bytes of the receive buffer.
+
+
+#config WMESH_SEND_BUFFER_SIZE
+#	int "Send buffer size"
+#	default 16384
+#	help
+#		Size in bytes of the send buffer.
+
+
+config WMESH_PEER_LIST_SIZE
+	int "Maximum number of simultaneous peers"
+	default 128
+
+
+choice WMESH_PERSISTENCE_BACKEND
+	prompt "Storage backend"
+	default WMESH_PERSISTENCE_NVS
+	help
+		Backend use to store persistent data.
+
+	config WMESH_PERSISTENCE_NVS
+		bool "NVS"
+endchoice
+
+
+#config WMESH_DEBUG_MODE
+#	bool "Debug mode"
+#	default false
+#	help
+#		Set this to true to enable debug options.
+
+
+menu "Security options"
+
+config WMESH_NETKEY_LENGTH
+	#int "Network Key length (bytes)"
+	int
+	#default 16
+	default 32 if WMESH_ENCRYPTION_DISABLED
+	default 16 if WMESH_ENCRYPTION_AES128_GCM
+	default 24 if WMESH_ENCRYPTION_AES192_GCM
+	default 32 if WMESH_ENCRYPTION_AES256_GCM
+	default 32 if WMESH_ENCRYPTION_CHACHA20_POLY1305
+	default 32 if WMESH_ENCRYPTION_CHACHA20
+	help
+		Length in bytes for the shared Network Key.
+		All other keys are securely derived from this.
+
+
+#choice WMESH_KDF_ALGORITHM
+#	prompt "Key derivation function"
+#	default WMESH_KDF_SHA256
+#	help
+#		KDF algorithm used to obtain encryption keys from the Network Key.
+#
+#	config WMESH_KDF_SHA256
+#		bool "SHA-256"
+#
+#	config WMESH_KDF_SHA512
+#		bool "SHA-512"
+#endchoice
+
+
+#config WMESH_KDF_ROUNDS
+#	int "Key derivation function rounds"
+#	default 4096
+#	help
+#		Rounds to run the KDF to obtain a key.
+
+
+choice WMESH_ENCRYPTION_ALGORITHM
+	prompt "Encryption algorithm"
+	default WMESH_ENCRYPTION_CHACHA20_POLY1305
+	help
+		Encryption primitive for mesh communication.
+
+	config WMESH_ENCRYPTION_DISABLED
+		bool "No encryption"
+
+	config WMESH_ENCRYPTION_AES128_GCM
+		bool "AES-128 GCM"
+
+	config WMESH_ENCRYPTION_AES192_GCM
+		bool "AES-192 GCM"
+
+	config WMESH_ENCRYPTION_AES256_GCM
+		bool "AES-256 GCM"
+
+	config WMESH_ENCRYPTION_CHACHA20_POLY1305
+		bool "ChaCha20 Poly1305"
+		select MBEDTLS_CHACHAPOLY_C
+		select MBEDTLS_CHACHA20_C
+		select MBEDTLS_POLY1305_C
+
+	config WMESH_ENCRYPTION_CHACHA20
+		bool "ChaCha20"
+		select MBEDTLS_CHACHA20_C
+
+endchoice
+
+
+config WMESH_ENCRYPTION_KEYLENGTH
+	int
+	default 32 if WMESH_ENCRYPTION_DISABLED
+	default 16 if WMESH_ENCRYPTION_AES128_GCM
+	default 24 if WMESH_ENCRYPTION_AES192_GCM
+	default 32 if WMESH_ENCRYPTION_AES256_GCM
+	default 32 if WMESH_ENCRYPTION_CHACHA20_POLY1305
+	default 32 if WMESH_ENCRYPTION_CHACHA20
+
+
+
+choice WMESH_ENCRYPTION_IV_SOURCE
+	prompt "IV source"
+	default WMESH_ENCRYPTION_IV_SOURCE_MAC
+	help
+		Source for encryption initialization vector
+
+	config WMESH_ENCRYPTION_IV_SOURCE_MAC
+		bool "MAC address"
+
+	config WMESH_ENCRYPTION_IV_SOURCE_RANDOM
+		bool "Hardware RNG"
+endchoice
+
+
+config WMESH_ENCRYPTION_IV_VARIABLE_LENGTH
+	bool
+	default y if (WMESH_ENCRYPTION_AES128_GCM || WMESH_ENCRYPTION_AES192_GCM || WMESH_ENCRYPTION_AES256_GCM) && WMESH_ENCRYPTION_IV_SOURCE_RANDOM
+	default n if (WMESH_ENCRYPTION_CHACHA20_POLY1305 || WMESH_ENCRYPTION_CHACHA20 || WMESH_ENCRYPTION_DISABLED)
+
+
+config WMESH_ENCRYPTION_IV_CUSTOM_LENGTH
+	int "IV length (bytes)"
+	default 8
+	depends on WMESH_ENCRYPTION_IV_VARIABLE_LENGTH
+	help
+		Length of the initialization vector
+
+
+config WMESH_ENCRYPTION_IV_LENGTH
+	int
+	default WMESH_ENCRYPTION_IV_CUSTOM_LENGTH if WMESH_ENCRYPTION_IV_VARIABLE_LENGTH
+	default 8 if !WMESH_ENCRYPTION_IV_VARIABLE_LENGTH && (WMESH_ENCRYPTION_AES128_GCM || WMESH_ENCRYPTION_AES192_GCM || WMESH_ENCRYPTION_AES256_GCM)
+	default 8 if (WMESH_ENCRYPTION_CHACHA20_POLY1305 || WMESH_ENCRYPTION_CHACHA20)
+	default 0 if WMESH_ENCRYPTION_DISABLED
+
+
+
+config WMESH_ENCRYPTION_NONCE_VARIABLE_LENGTH
+	bool
+	default y if (WMESH_ENCRYPTION_AES128_GCM || WMESH_ENCRYPTION_AES192_GCM || WMESH_ENCRYPTION_AES256_GCM || WMESH_ENCRYPTION_DISABLED)
+	default n if (WMESH_ENCRYPTION_CHACHA20_POLY1305 || WMESH_ENCRYPTION_CHACHA20)
+
+
+config WMESH_ENCRYPTION_NONCE_CUSTOM_LENGTH
+	int "Nonce length (bytes)"
+	default 4
+	depends on WMESH_ENCRYPTION_NONCE_VARIABLE_LENGTH
+	help
+		Size of the nonce used for encryption.
+
+
+config WMESH_ENCRYPTION_NONCE_LENGTH
+	int
+	default WMESH_ENCRYPTION_NONCE_CUSTOM_LENGTH if WMESH_ENCRYPTION_NONCE_VARIABLE_LENGTH
+	default 4 if (WMESH_ENCRYPTION_CHACHA20_POLY1305 || WMESH_ENCRYPTION_CHACHA20)
+
+
+
+config WMESH_ENCRYPTION_TAG_VARIABLE_LENGTH
+	bool
+	default y if (WMESH_ENCRYPTION_AES128_GCM || WMESH_ENCRYPTION_AES192_GCM || WMESH_ENCRYPTION_AES256_GCM)
+	default n if (WMESH_ENCRYPTION_CHACHA20_POLY1305 || WMESH_ENCRYPTION_CHACHA20 || WMESH_ENCRYPTION_DISABLED)
+
+
+config WMESH_ENCRYPTION_TAG_CUSTOM_LENGTH
+	int "Authentication tag length (bytes)"
+	default 16
+	depends on WMESH_ENCRYPTION_TAG_VARIABLE_LENGTH
+	help
+		Size of the tag authentication tag.
+
+
+config WMESH_ENCRYPTION_TAG_LENGTH
+	int
+	default WMESH_ENCRYPTION_TAG_CUSTOM_LENGTH if WMESH_ENCRYPTION_TAG_VARIABLE_LENGTH
+	default 16 if (WMESH_ENCRYPTION_CHACHA20_POLY1305)
+	default 0 if (WMESH_ENCRYPTION_CHACHA20 || WMESH_ENCRYPTION_DISABLED)
+
+
+endmenu
+
+endmenu
